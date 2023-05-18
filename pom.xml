@@ -1,0 +1,337 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>sn.intouch.gu.api</groupId>
+	<artifactId>BULKAPI</artifactId>
+	<version>${version.projet}</version>
+	<packaging>pom</packaging>
+	<name>BULKAPI</name>
+	<description>BULKAPI</description>
+	<modules>
+		<module>BULKAPI-WS</module>
+		<module>BULKAPI-EAR</module>
+		<module>BULKAPI-EJB</module>
+	</modules>
+
+	<!-- <distributionManagement> -->
+	<!-- <repository> -->
+	<!-- <id>totalintouch-releases</id> -->
+	<!-- <url>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-releases/</url> -->
+	<!-- </repository> -->
+	<!-- <snapshotRepository> -->
+	<!-- <id>totalintouch-snapshots</id> -->
+	<!-- <url>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-snapshots/</url> -->
+	<!-- </snapshotRepository> -->
+	<!-- </distributionManagement> -->
+
+	<!-- <scm> -->
+	<!-- <connection>scm:git:https://kazan.priv.atos.fr/git/guichet-unique-gitrepository-api-bulkpayment</connection> -->
+	<!-- <developerConnection>scm:git:https://kazan.priv.atos.fr/git/guichet-unique-gitrepository-api-bulkpayment</developerConnection> -->
+	<!-- <url>scm:git:https://kazan.priv.atos.fr/git/guichet-unique-gitrepository-api-bulkpayment</url> -->
+	<!-- </scm> -->
+
+	<!-- <issueManagement> -->
+	<!-- <system>Jira</system> -->
+	<!-- <url /> -->
+	<!-- </issueManagement> -->
+
+	<!-- <ciManagement> -->
+	<!-- <system>Jenkins</system> -->
+	<!-- <url>https://kazan.atosworldline.com/jenkins2/1/job/guichet-unique-jenkins2-api-bulkpayment</url> -->
+	<!-- </ciManagement> -->
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>maven-restlet</id> -->
+	<!-- <name>Public online Restlet repository</name> -->
+	<!-- <url>http://maven.restlet.com</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+
+	<scm>
+		<connection>${git.url}</connection>
+		<developerConnection>${git.url}</developerConnection>
+		<url>${git.url}</url>
+	</scm>
+	<issueManagement>
+		<system>Jira</system>
+
+	</issueManagement>
+
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://kazan.atosworldline.com/jenkins2/1/job/guichet-unique-jenkins2-api-bulkpayment</url>
+	</ciManagement>
+	<repositories>
+		<repository>
+			<id>maven-restlet</id>
+			<name>Public online Restlet repository</name>
+			<url>http://maven.restlet.com</url>
+		</repository>
+
+		<repository>
+			<id>totalintouch-releases</id>
+			<url>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-releases/</url>
+		</repository>
+		<repository>
+			<id>nexus</id>
+			<url>http://35.190.150.119:8081/repository/maven-releases/</url>
+		</repository>
+	</repositories>
+	<properties>
+	    <version.projet>0.1.0</version.projet>
+		<!-- Explicitly declaring the source encoding eliminates the following 
+			message: -->
+		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+			resources, i.e. build is platform dependent! -->
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		
+		
+
+		<!-- JBoss dependency versions -->
+
+		<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+
+		<!-- Define the version of the JBoss BOMs we want to import to specify 
+			tested stacks. -->
+		<version.jboss.bom>1.0.7.Final</version.jboss.bom>
+		<!-- Alternatively, comment out the above line, and un-comment the line 
+			below to use version 1.0.4.Final-redhat-4 which is a release certified to 
+			work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven 
+			repository. -->
+		<!-- <version.jboss.bom>1.0.4.Final-redhat-4</version.jboss.bom>> -->
+		<version.jboss.as>7.1.2.Final</version.jboss.as>
+		<!-- Alternatively, comment out the above line, and un-comment the line 
+			below to use version 7.2.0.Final-redhat-8 which is a release certified to 
+			work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven 
+			repository. -->
+		<!-- <version.jboss.as>7.2.0.Final-redhat-8</version.jboss.as> -->
+
+		<!-- other plugin versions -->
+		<version.ear.plugin>2.6</version.ear.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+		<version.surefire.plugin>2.10</version.surefire.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+
+		<!-- 1/ config directory (definition des constantes (url fct de l'environnement) -->
+		<main.config.directory>src/main/config</main.config.directory>
+
+		<!-- 2/ decrire les repertoires pour stocker les fichiers de config .zip 
+			des environnements -->
+		<main.descriptor.directory>src/main/descriptor</main.descriptor.directory>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>4.4.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpasyncclient</artifactId>
+				<version>4.1.2</version>
+			</dependency>
+			<!-- Define the version of the WAR so that we don't need to repeat ourselves 
+				in every module -->
+			<!-- <dependency> <groupId>sn.intotal</groupId> <artifactId>intotal-rest</artifactId> 
+				<version>${project.version}</version> <type>war</type> <scope>compile</scope> 
+				</dependency> -->
+
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-6.0-with-tools stack (you can 
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+				for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate 
+				stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras 
+				from the Hibernate family of projects) -->
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<!-- The JBoss AS plugin deploys your ear to a local JBoss AS container -->
+				<!-- Due to Maven's lack of intelligence with EARs we need to configure 
+					the jboss-as maven plugin to skip deployment for all modules. We then enable 
+					it specifically in the ear module. -->
+				<plugin>
+					<groupId>org.jboss.as.plugins</groupId>
+					<artifactId>jboss-as-maven-plugin</artifactId>
+					<version>${version.jboss.maven.plugin}</version>
+					<inherited>true</inherited>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+
+				<!-- 3/ Configurer comment se comporte la generation des .zip -->
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+							<configuration>
+								<ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+								<descriptorSourceDirectory>${project.basedir}/${main.descriptor.directory}</descriptorSourceDirectory>
+								<finalName>${project.build.finalName}</finalName>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<!-- <profile> <id>dev</id> <activation> <activeByDefault>true</activeByDefault> 
+			</activation> <build> <resources> <resource> <directory>${basedir}/src/main/resources</directory> 
+			</resource> <resource> <directory>${basedir}/src/main/resources_dev</directory> 
+			</resource> </resources> </build> </profile> <profile> <id>demo</id> <build> 
+			<resources> <resource> <directory>${basedir}/src/main/resources</directory> 
+			</resource> <resource> <directory>${basedir}/src/main/resources_demo</directory> 
+			</resource> </resources> </build> </profile> <profile> <id>prod</id> <build> 
+			<resources> <resource> <directory>${basedir}/src/main/resources</directory> 
+			</resource> <resource> <directory>${basedir}/src/main/resources_prod</directory> 
+			</resource> </resources> </build> </profile> -->
+		<profile>
+			<id>config</id>
+			<activation>
+				<property>
+					<name>env</name>
+				</property>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<filtering>false</filtering>
+						<directory>src/main/resources</directory>
+					</resource>
+					<!-- <resource> <filtering>false</filtering> <directory>${main.config.directory}/${env}</directory> 
+						</resource> -->
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>kazan</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<id>totalintouch-releases</id>
+					<url>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-releases/</url>
+				</repository>
+				<snapshotRepository>
+					<id>totalintouch-snapshots</id>
+					<url>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+
+			<properties>
+				<git.url>scm:git:https://kazan.priv.atos.fr/git/guichet-unique-gitrepository-api-bulkpayment</git.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>xerus</id>
+
+			<distributionManagement>
+				<repository>
+					<id>nexus</id>
+					<url>http://nexus.xerus.hubso.net/repository/maven-releases/</url>
+				</repository>
+				<snapshotRepository>
+					<id>nexus</id>
+					<url>http://nexus.xerus.hubso.net/repository/maven-snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+			<repositories>
+				<repository>
+					<id>nexus</id>
+					<url>http://nexus.xerus.hubso.net/repository/maven-releases/</url>
+				</repository>
+			</repositories>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>1.9.5</version>
+						<configuration>
+							<username>atciss</username>
+							<password>solution</password>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+
+					</plugin>
+				</plugins>
+			</build>
+
+
+		</profile>
+	</profiles>
+</project>

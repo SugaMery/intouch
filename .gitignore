@@ -1,0 +1,12 @@
+.settings/
+target/
+*.D_Store 
+.project
+bin/
+.classpath
+*.iml
+.metadata/
+.recommenders/
+.settings/
+Servers/
+RemoteSystemsTempFiles/

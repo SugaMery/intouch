@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="guAPIDistPU">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/PDADS</jta-data-source>
+		<class>sn.intouch.gu.api.ejb.entities.Agent</class>
+		<class>sn.intouch.gu.api.ejb.entities.CategoryS</class>
+		<class>sn.intouch.gu.api.ejb.entities.Compte</class>
+		<class>sn.intouch.gu.api.ejb.entities.Connexion</class>
+		<class>sn.intouch.gu.api.ejb.entities.Fournisseur</class>
+		<class>sn.intouch.gu.api.ejb.entities.FraisServiceAgence</class>
+		<class>sn.intouch.gu.api.ejb.entities.Network</class>
+		<class>sn.intouch.gu.api.ejb.entities.NetworkGroup</class>
+		<class>sn.intouch.gu.api.ejb.entities.NotificationAPI</class>
+		<class>sn.intouch.gu.api.ejb.entities.Operation</class>
+		<class>sn.intouch.gu.api.ejb.entities.OperationMois</class>
+		<class>sn.intouch.gu.api.ejb.entities.PDA</class>
+		<class>sn.intouch.gu.api.ejb.entities.Parametre</class>
+		<class>sn.intouch.gu.api.ejb.entities.PaysISO</class>
+		<class>sn.intouch.gu.api.ejb.entities.SalePoint</class>
+		<class>sn.intouch.gu.api.ejb.entities.Servic</class>
+		<class>sn.intouch.gu.api.ejb.entities.Servic1</class>
+		<class>sn.intouch.gu.api.ejb.entities.ServiceSubCategory</class>
+		<class>sn.intouch.gu.api.ejb.entities.Statut</class>
+		<class>sn.intouch.gu.api.ejb.entities.Supervisor</class>
+		<class>sn.intouch.gu.api.ejb.entities.TokenAPI</class>
+		<class>sn.intouch.gu.api.ejb.entities.Transaction</class>
+		<class>sn.intouch.gu.api.ejb.entities.TransactionTemp</class>
+		<class>sn.intouch.gu.api.ejb.entities.TypeCompte</class>
+		<class>sn.intouch.gu.api.ejb.entities.TypeOperation</class>
+		<class>sn.intouch.gu.api.ejb.entities.USSDOperation</class>
+		<class>sn.intouch.gu.api.ejb.entities.USSDOperationMois</class>
+		<class>sn.intouch.gu.api.ejb.entities.Utilisateur</class>
+		<class>sn.intouch.gu.api.ejb.entities.Fonction</class>
+		<class>sn.intouch.gu.api.ejb.entities.Fonctionnalite</class>
+		<class>sn.intouch.gu.api.ejb.entities.Module</class>
+		<class>sn.intouch.gu.api.ejb.entities.Action</class>
+		
+ 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.import_files_sql_extractor" value="org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor" />
+			<property name="hibernate.generate_statistics" value="true"/>
+			<property name="hibernate.cache.use_second_level_cache" value="true" />			
+			<property name="hibernate.cache.use_query_cache" value="true"/>	
+		</properties>
+	</persistence-unit>
+</persistence>
+

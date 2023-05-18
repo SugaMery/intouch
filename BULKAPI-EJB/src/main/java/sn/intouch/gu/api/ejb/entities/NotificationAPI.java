@@ -1,0 +1,99 @@
+package sn.intouch.gu.api.ejb.entities;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "notification_api")
+public class NotificationAPI implements Serializable {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "service_id")
+	private String service_id;
+	@Column(name = "gu_transaction_id")
+	private String gu_transaction_id;
+	@Column(name = "status")
+	private String status;
+	@Column(name = "partner_transaction_id")
+	private String partner_transaction_id;
+	@Column(name = "call_back_url")
+	private String call_back_url;
+	@Column(name = "commission")
+	private Double commission;
+
+	public NotificationAPI() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getService_id() {
+		return service_id;
+	}
+
+	public void setService_id(String service_id) {
+		this.service_id = service_id;
+	}
+
+	public String getGu_transaction_id() {
+		return gu_transaction_id;
+	}
+
+	public void setGu_transaction_id(String gu_transaction_id) {
+		this.gu_transaction_id = gu_transaction_id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getPartner_transaction_id() {
+		return partner_transaction_id;
+	}
+
+	public void setPartner_transaction_id(String partner_transaction_id) {
+		this.partner_transaction_id = partner_transaction_id;
+	}
+
+	public String getCall_back_url() {
+		return call_back_url;
+	}
+
+	public void setCall_back_url(String call_back_url) {
+		this.call_back_url = call_back_url;
+	}
+
+	public Double getCommission() {
+		return commission;
+	}
+
+	public void setCommission(Double commission) {
+		this.commission = commission;
+	}
+
+	@Override
+	public String toString() {
+		return "NotificationAPI [id=" + id + ", service_id=" + service_id + ", gu_transaction_id=" + gu_transaction_id
+				+ ", status=" + status + ", partner_transaction_id=" + partner_transaction_id + ", call_back_url="
+				+ call_back_url + "]";
+	}
+
+}

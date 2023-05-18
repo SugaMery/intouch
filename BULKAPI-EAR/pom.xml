@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>sn.intouch.gu.api</groupId>
+		<artifactId>BULKAPI</artifactId>
+		<version>${version.projet}</version>
+	</parent>
+	<artifactId>BULKAPI-EAR</artifactId>
+	<packaging>ear</packaging>
+	<name>BULKAPI-EAR</name>
+	<description>BULKAPI-EAR</description>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<!-- The JBoss AS plugin deploys your ear to a local JBoss AS container -->
+			<!-- Due to Maven's lack of intelligence with EARs we need to configure 
+				the jboss-as maven plugin to skip deployment for all modules. We then enable 
+				it specifically in the ear module. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${version.ear.plugin}</version>
+				<configuration>
+					<!-- Tell Maven we are using Java EE 6 -->
+					<version>6</version>
+					<earSourceExcludes>*.*</earSourceExcludes>
+					<!-- <excludes> <exclude>*.*</exclude> </excludes> Use Java EE ear libraries 
+						as needed. Java EE ear libraries are in easy way to package any libraries 
+						needed in the ear, and automatically have any modules (EJB-JARs and WARs) 
+						use them -->
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+
+					<modules>
+						<!-- Default context root of the web app is /intotal-web. If a custom 
+							context root is needed, uncomment the following snippet to register our War 
+							as a web module and set the contextRoot property -->
+
+
+	                    <webModule>
+	                        <groupId>sn.intouch.gu.api</groupId>
+	                        <artifactId>BULKAPI-WS</artifactId>
+	                        <contextRoot>/bo/bulk/api</contextRoot>
+	                    </webModule>
+					</modules>
+					<fileNameMapping>no-version</fileNameMapping>
+					<archive>
+						<manifestEntries>
+							<Dependencies>com.gu.configuration</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<configuration>
+					<filename>${project.artifactId}.ear</filename>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>sn.intouch.gu.api</groupId>
+			<artifactId>BULKAPI-WS</artifactId>
+			<version>${version.projet}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>sn.intouch.gu.api</groupId>
+			<artifactId>BULKAPI-EJB</artifactId>
+			<version>${version.projet}</version>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"
+          xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <interactiveMode>false</interactiveMode>  
+    <localRepository>/DATA/cache/m2/repository</localRepository>
+    <proxies>
+        <proxy>
+            <port>3128</port>
+            <host>proxy-prod-scl.svc.meshcore.net</host>
+            <nonProxyHosts>*.priv.atos.fr|localhost|127.0.0.1|*.meshcore.net</nonProxyHosts>
+        </proxy>
+    </proxies>
+    <servers>
+        <server>
+            <id>totalintouch-releases</id>
+            <username>technical-user-totalintouch</username>
+            <password>{qwidARtfpj8HTv+WFwpwJdw6Ci/zU2n4w4lH2X9iVRw=}</password>
+        </server>
+        <server>
+            <id>totalintouch-snapshots</id>
+            <username>technical-user-totalintouch</username>
+            <password>{qwidARtfpj8HTv+WFwpwJdw6Ci/zU2n4w4lH2X9iVRw=}</password>
+        </server>
+    </servers>
+    <mirrors>
+        <mirror>
+            <mirrorOf>central</mirrorOf>
+            <url>https://kazan.atosworldline.com/nexus/content/groups/public/</url>
+            <id>public</id>
+        </mirror>
+    </mirrors>
+    <profiles>
+        <profile>
+            <properties>
+                <totalintouch-releases>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-releases/</totalintouch-releases>
+                <totalintouch-snapshots>https://kazan.atosworldline.com/nexus/content/repositories/totalintouch-snapshots/</totalintouch-snapshots>
+            </properties>
+            <repositories>
+                <repository>
+                    <releases />
+                    <snapshots />
+                    <id>central</id>
+                    <url>http://central</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <releases />
+                    <snapshots />
+                    <id>central</id>
+                    <url>http://central</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>nexus</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>

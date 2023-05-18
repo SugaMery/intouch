@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>BULKAPI-WS</display-name>
+  <servlet>
+    <servlet-name>RestletServlet</servlet-name>
+    <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+    <init-param>
+      <param-name>org.restlet.application</param-name>
+      <param-value>sn.intouch.gu.api.config.RestletDispatcher</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.restlet.clients</param-name>
+      <param-value>HTTP HTTPS</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RestletServlet</servlet-name>
+    <url-pattern>/v1/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- notif servlet -->
+	<servlet>
+		<servlet-name>RestletServletNotif</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>sn.intouch.gu.api.config.NotificationDispatcher</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.restlet.clients</param-name>
+			<param-value>HTTP HTTPS</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestletServletNotif</servlet-name>
+		<url-pattern>/notification/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<jsp-file>/WEB-INF/ui/index.jsp</jsp-file>
+		<!-- <servlet-class>sn.intouch.gu.api.docs.IndexServlet</servlet-class> -->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/v1</url-pattern>
+	</servlet-mapping>
+ 
+</web-app>
